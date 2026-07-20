@@ -8,7 +8,7 @@ No API key. No signup. Add the endpoint and start asking.
 https://ramen.gachi-tokusuru.com/mcp
 ```
 
-> Registered on the [official MCP Registry](https://registry.modelcontextprotocol.io/) and [Smithery](https://smithery.ai/) (Quality Score 100/100). Dataset methodology archived on Zenodo (DOI: 10.5281/zenodo.21199500).
+> Registered on the [official MCP Registry](https://registry.modelcontextprotocol.io/) and [Smithery](https://smithery.ai/) (Quality Score 100/100).
 
 ---
 
@@ -91,7 +91,6 @@ Read the full story: **https://ramen.gachi-tokusuru.com/story**
 - 🌐 MCP endpoint: https://ramen.gachi-tokusuru.com/mcp
 - 📖 Story: https://ramen.gachi-tokusuru.com/story
 - 📦 Smithery: https://smithery.ai/ *(search "gachi-ramen")*
-- 🗄️ Zenodo (methodology): https://doi.org/10.5281/zenodo.21199500
 - 🐦 X: [@gachidata](https://x.com/gachidata)
 
 ---
