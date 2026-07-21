@@ -33,6 +33,40 @@ Add to your `claude_desktop_config.json`:
 
 Point your MCP client directly at `https://ramen.gachi-tokusuru.com/mcp`.
 
+### No Claude? Try it with curl
+
+The server is **stateless** — no session handshake, no `Mcp-Session-Id`, no `initialized` notification. Just POST a JSON-RPC `tools/call` and read the JSON straight back:
+
+```bash
+# Find tonkotsu ramen within 500 m of Ebisu station
+curl -s -X POST https://ramen.gachi-tokusuru.com/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_ramen","arguments":{"lat":35.6467,"lng":139.7100,"radius_m":500,"keito":"tonkotsu"}}}'
+```
+
+Results come back as a normal JSON response (not SSE). Pipe through [`jq`](https://jqlang.github.io/jq/) to read the shop list — the payload is a JSON string inside `result.content[0].text`, so `fromjson` unwraps it:
+
+```bash
+curl -s -X POST https://ramen.gachi-tokusuru.com/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_ramen","arguments":{"lat":35.6467,"lng":139.7100,"radius_m":500,"keito":"tonkotsu"}}}' \
+  | jq -r '.result.content[0].text | fromjson | .shops[] | "\(.name) — \(.distance_m)m"'
+```
+
+```
+博多かわ串・高知餃子 酔場フタマタ 恵比寿店 — 96m
+町田商店 恵比寿東口店 — 117m
+ラーメン豚山 恵比寿店 — 145m
+框家 — 258m
+博多一風堂 恵比寿店 — 358m
+九十九とんこつラーメン 恵比寿本店 — 393m
+```
+
+Want the full MCP handshake? `initialize` and `tools/list` work the same way — POST the JSON-RPC method, read the JSON reply. No session id is needed on any call.
+
+Prefer plain REST? A keyed REST API exists for commercial use — and there's a free sample of 1,000 real records (no signup) at <https://ramen.gachi-tokusuru.com/>.
+
 ### Try these
 
 - *"Is there a ramen shop on Iriomote Island?"* — yes, two (a jungle island near Taiwan)
