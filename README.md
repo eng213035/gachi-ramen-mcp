@@ -1,6 +1,6 @@
 # 🍜 Gachi-Ramen MCP
 
-**A no-auth MCP server for 62,000+ Japanese ramen shops — every prefecture, queryable by any AI agent.**
+**A no-auth MCP server for 67,000+ Japanese ramen shops — every prefecture, queryable by any AI agent.**
 
 No API key. No signup. Add the endpoint and start asking.
 
@@ -115,7 +115,7 @@ Free for individual and agent use. Questions about the data: contact@gachi-tokus
 ## Architecture
 
 - **Cloudflare Workers + KV** at the edge — marginal cost per query ≈ zero, which is why it can stay open with no auth
-- Source: parallel crawl of ~120,000 public records, deduplicated to 62,000+
+- Source: parallel crawl of ~120,000 public records, deduplicated to 67,000+
 - Liveness: rolling monthly re-crawl cycle
 
 Read the full story: **https://ramen.gachi-tokusuru.com/story**
